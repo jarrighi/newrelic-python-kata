@@ -1,0 +1,4 @@
+{
+  "description": "All available databases are currently reserved!  Please try again soon.", 
+  "error": "NO_DATABASES_AVAILABLE"
+}

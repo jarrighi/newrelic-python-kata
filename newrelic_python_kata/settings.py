@@ -8,10 +8,10 @@ from sys import path
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 
-def get_db_url(filename='db_url.txt'):
-    with open(filename) as f:
-        db_url = f.readline().strip()
-        return db_url
+# def get_db_url(filename='db_url.txt'):
+#     with open(filename) as f:
+#         db_url = f.readline().strip()
+#         return db_url
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
@@ -53,8 +53,13 @@ MANAGERS = ADMINS
 
 ########## DATABASE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-db_url = get_db_url()
-DATABASES = {'default': dj_database_url.parse(db_url)}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pythonkata',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }}
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 ########## END DATABASE CONFIGURATION
 

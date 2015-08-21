@@ -2,9 +2,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
+import newrelic
 import pywapi
 
 def weather(request):
+    newrelic.agent.add_custom_parameter('my_string', 'hello!')
     locations = ["94041", "90008", "97202", "94110", "10024",
                  "02111", "60605", "23454", "32804", "75204",
                  "98112", "84102", "97219", "84043", "12345"]

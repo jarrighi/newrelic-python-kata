@@ -55,12 +55,14 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pythonkata',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }}
-DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+        'USER': 'juleslearns',
+        'PASSWORD': 'mysql',
+        'HOST': 'juleslearns.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+    }
+    }
 ########## END DATABASE CONFIGURATION
 
 

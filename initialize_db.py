@@ -1,15 +1,6 @@
 from random import randint
 from os import environ
 
-import requests 
-
-
-def setup_postgression():
-    url = 'http://api.postgression.com'
-    db_url = requests.get(url).text
-    with open('db_url.txt', 'w') as f:
-        f.write(db_url)
-
 def run_django_commands(*args):
     environ.setdefault("DJANGO_SETTINGS_MODULE", "newrelic_python_kata.settings")
     from django.core.management import call_command
@@ -25,7 +16,7 @@ def populate_db():
         ps = []
         for idx, line in enumerate(f):
             name, sex, salary = line.rstrip('\r\n').split(',')
-            e = Employee(name=name, employee_id=idx)
+            e = Employee(name=name, employee_id=(idx+1))
             b = BioData(employee=e, age=randint(18, 40), sex=sex)
             p = Payroll(employee=e, salary=salary)
             es.append(e)
@@ -37,8 +28,6 @@ def populate_db():
     Payroll.objects.bulk_create(ps)
             
 if __name__ == '__main__':
-    print 'INFO: Setting up Postgression'
-    setup_postgression()
     print 'INFO: Setting up Django DB'
     run_django_commands('syncdb')
     print 'INFO: Populating the database.'
